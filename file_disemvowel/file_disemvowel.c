@@ -9,9 +9,11 @@ bool is_vowel(char c) {
      * Returns true if c is a vowel (upper or lower case), and
      * false otherwise.
      */
-	char* vowels = calloc(11, sizeof(char));
+	char* vowels = calloc(12, sizeof(char));
 	strcpy(vowels, "aeiouAEOIOU\0");
-	return strchr(vowels, c);
+	int* result = (int*) strchr(vowels, c);
+	free(vowels);
+	return result;
 }
 
 int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
