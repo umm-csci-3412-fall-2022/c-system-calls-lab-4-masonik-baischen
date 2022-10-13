@@ -24,7 +24,7 @@ int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
 
 	int num_non_vowels = 0;
 	for (int i = 0; i < num_chars; i++){
-		if (is_vowel(in_buf[i]) != 0){
+		if (is_vowel(in_buf[i]) == 0){
 			out_buf[num_non_vowels] = in_buf[i];
 			num_non_vowels++;
 		}
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     FILE *outputFile = stdout;
     if(argc == 3) {
 	inputFile = fopen(argv[1], "r");
-	outputFile = fopen(argv[2], "r+");
+	outputFile = fopen(argv[2], "w+");
     }
     else if(argc == 2) {
 	inputFile = fopen(argv[1], "r");
