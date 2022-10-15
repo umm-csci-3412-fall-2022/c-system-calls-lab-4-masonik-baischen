@@ -19,7 +19,7 @@ bool is_dir(const char* path) {
 	struct stat *restrict stat_buf;
 	stat_buf = malloc(sizeof(struct stat));
 	if(stat(path, stat_buf) == 0) {
-		if(S_ISDIR(stat_buf->st_mode) == 0) {
+		if(S_ISDIR(stat_buf->st_mode) != 0) {
 			return true;
 		}
 		return false;
@@ -51,7 +51,7 @@ void process_directory(const char* path) {
 	dir = opendir(path);
 	chdir(path);
 	while((dp=readdir(dir)) != NULL) {
-		if(!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..")) {
+		if(0 != strcmp(dp->d_name, ".") && 0 != strcmp(dp->d_name, "..")) {
 			process_path(dp->d_name);
 		}
 	}
